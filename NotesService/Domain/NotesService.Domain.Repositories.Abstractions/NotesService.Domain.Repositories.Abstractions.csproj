@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NotesService.Domain\NotesService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
