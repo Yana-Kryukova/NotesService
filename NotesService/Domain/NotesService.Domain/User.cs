@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using NotesService.Domain.Base;
+﻿using NotesService.Domain.Base;
+using NotesService.Domain.Exceptions;
+using NotesService.ValueObjects;
 
 namespace NotesService.Domain
 {
@@ -34,24 +31,42 @@ namespace NotesService.Domain
         /// <param name="newUsername">New user's username.</param>
         internal bool ChangeUsername(Username newUsername)
         {
+            if (newUsername == null) throw new ArgumentNullValueException(nameof(newUsername));
+
             if (Username == newUsername) return false;
+
             Username = newUsername;
             return true;
         }
 
-        public bool CreateNote(Title title, Thesis thesis)
+        public Note CreateNote(Title title, Thesis thesis)
         {
-            throw new System.NotImplementedException();
+            var note = new Note(this, thesis, DateTime.UtcNow, title);
+            _notes.Add(note);
+            return note;
         }
 
         public bool EditNote(Note note, Title newTitle, Thesis newThesis)
         {
-            throw new System.NotImplementedException();
+            if (note.User != this) throw new AnotherUserEditNoteException(note, this);
+
+            if (!_notes.Contains(note)) throw new NoteNotBelongUserException(note, this);
+
+            var isEdit = note.SetTitle(newTitle) || note.SetThesis(newThesis);
+
+            if (isEdit) note.SetModificationData(DateTime.UtcNow);
+
+            return isEdit;
         }
 
-        public bool DeleteNote(Note note)
+        public void DeleteNote(Note note)
         {
-            throw new System.NotImplementedException();
+            if (note.User != this) throw new AnotherUserDeleteNoteException(note, this);
+
+            if (!_notes.Contains(note)) throw new NoteNotBelongUserException(note, this);
+
+            _notes.Remove(note);
+
         }
     }
 }

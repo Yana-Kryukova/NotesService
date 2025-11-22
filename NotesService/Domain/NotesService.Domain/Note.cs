@@ -3,39 +3,79 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NotesService.Domain.Base;
+using NotesService.Domain.Exceptions;
+using NotesService.ValueObjects;
 
 namespace NotesService.Domain
 {
-    public class Note : Entity
+    public class Note : Entity<Guid>
     {
-        public Note()
-        {
-            throw new System.NotImplementedException();
-        }
+        public Title? Title { get; private set; } = null;
 
-        public Title? Title { get; private set; }
-
-        public Thesis Thesis { get; private set; }
+        public Thesis Thesis { get; private set; } = default!;
 
         public DateTime CreationData { get; }
 
-        public DateTime? ModificationData { get; private set; }
+        public DateTime? ModificationData { get; private set; } = null;
 
-        public User User { get; }
+        public User User { get; } = default!;
+
+        protected Note()
+        {
+        }
+
+        public Note(
+            User user,
+            Thesis thesis,
+            DateTime creationData,
+            Title? title = null)
+            : this(Guid.NewGuid(), user, thesis, creationData, title) { }
+
+        protected Note(Guid id,
+            User user,
+            Thesis thesis,
+            DateTime creationData,
+            Title? title = null,
+            DateTime? modificationData = null)
+            : base(id)
+        {
+            User = user ?? throw new ArgumentNullValueException(nameof(user));
+            Thesis = thesis ?? throw new ArgumentNullValueException(nameof(thesis));
+            Title = title;
+
+            if (modificationData is not null && modificationData < creationData)
+                throw new InvalidModificationDataException(this, modificationData.Value);
+
+            CreationData = creationData;
+            ModificationData = modificationData;
+        }
 
         public bool SetTitle(Title newTitle)
         {
-            throw new System.NotImplementedException();
+            if (Title == newTitle)
+                return false;
+            Title = newTitle;
+            return true;
         }
 
         public bool SetThesis(Thesis newThesis)
         {
-            throw new System.NotImplementedException();
+            if (Thesis == null) throw new ArgumentNullValueException(nameof(newThesis));
+            if (Thesis == newThesis)
+                return false;
+            Thesis = newThesis;
+            return true;
         }
 
         public bool SetModificationData(DateTime modificationData)
         {
-            throw new System.NotImplementedException();
+            if (ModificationData == null) throw new ArgumentNullValueException(nameof(ModificationData));
+            if (CreationData > modificationData) throw new InvalidModificationDataException(this, modificationData);
+            if (ModificationData > modificationData) throw new InvalidModificationDataException(this, modificationData);
+            if (ModificationData == modificationData)
+                return false;
+            ModificationData = modificationData;
+            return true;
         }
     }
 }
