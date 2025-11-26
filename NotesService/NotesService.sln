@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainApp", "DomainApp\Doma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{10E28AF6-1279-44F2-BEF8-0BF915F97AEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesService.Infrastructure.EntityFramework", "Infrastructure\AuctionTrading.Infrastructure.EntityFramework\NotesService.Infrastructure.EntityFramework.csproj", "{60F1A555-7C43-4813-B142-3E30A71F6215}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesService.Infrastructure.EntityFramework", "Infrastructure\NotesService.Infrastructure.EntityFramework\NotesService.Infrastructure.EntityFramework.csproj", "{60F1A555-7C43-4813-B142-3E30A71F6215}"
 	ProjectSection(ProjectDependencies) = postProject
 		{11E083CF-E064-476A-B702-98C6602BC4B8} = {11E083CF-E064-476A-B702-98C6602BC4B8}
 		{CEFF6485-39C0-451C-9E2E-48BF16D7D1D6} = {CEFF6485-39C0-451C-9E2E-48BF16D7D1D6}
