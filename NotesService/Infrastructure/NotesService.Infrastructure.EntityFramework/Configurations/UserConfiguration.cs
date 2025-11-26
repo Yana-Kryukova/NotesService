@@ -20,6 +20,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .WithOne(x => x.User)
             .HasForeignKey("UserId")
             .HasPrincipalKey(x => x.Id);
+        builder.Ignore(x => x.Notes);
     }
 }
 

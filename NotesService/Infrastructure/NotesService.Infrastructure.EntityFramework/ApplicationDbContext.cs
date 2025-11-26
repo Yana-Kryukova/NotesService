@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NotesService.Domain;
 
 namespace NotesService.Infrastructure.EntityFramework;
