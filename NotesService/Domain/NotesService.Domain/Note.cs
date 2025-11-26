@@ -69,7 +69,7 @@ namespace NotesService.Domain
 
         public bool SetModificationData(DateTime modificationData)
         {
-            if (ModificationData == null) throw new ArgumentNullValueException(nameof(ModificationData));
+            if (modificationData == null) throw new ArgumentNullValueException(nameof(ModificationData));
             if (CreationData > modificationData) throw new InvalidModificationDataException(this, modificationData);
             if (ModificationData > modificationData) throw new InvalidModificationDataException(this, modificationData);
             if (ModificationData == modificationData)
