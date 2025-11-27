@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesService.WebHost", "Presentation\NotesService.WebHost\NotesService.WebHost.csproj", "{371CC469-00BC-4D3A-A669-4B0CBAF61769}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{7BD94104-FEC9-424B-8E06-529A4FC6F1F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesService.Application.Models", "Application\NotesService.Application.Models\NotesService.Application.Models.csproj", "{327C0ED8-9D89-452E-8482-E2284CBE5FD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{371CC469-00BC-4D3A-A669-4B0CBAF61769}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{371CC469-00BC-4D3A-A669-4B0CBAF61769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{371CC469-00BC-4D3A-A669-4B0CBAF61769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{327C0ED8-9D89-452E-8482-E2284CBE5FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{327C0ED8-9D89-452E-8482-E2284CBE5FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{327C0ED8-9D89-452E-8482-E2284CBE5FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{327C0ED8-9D89-452E-8482-E2284CBE5FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,7 @@ Global
 		{C3DAF344-44FA-451C-8A85-E706FCCE2A99} = {05A92D43-0F39-4BF1-8CB2-3A2E9566A800}
 		{60F1A555-7C43-4813-B142-3E30A71F6215} = {10E28AF6-1279-44F2-BEF8-0BF915F97AEF}
 		{371CC469-00BC-4D3A-A669-4B0CBAF61769} = {D19B7DA5-E688-48AC-A6A6-719DB170226D}
+		{327C0ED8-9D89-452E-8482-E2284CBE5FD5} = {7BD94104-FEC9-424B-8E06-529A4FC6F1F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BC2F155-3FCB-4F37-AB50-C3964D256145}
