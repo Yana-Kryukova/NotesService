@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using NotesService.Application.Models.Base;
 using NotesService.Application.Models.Note;
 using NotesService.Application.Models.User;
 using NotesService.Domain;
-using System.Security.Cryptography;
 
 namespace NotesService.Application.Services.Mapping;
 
