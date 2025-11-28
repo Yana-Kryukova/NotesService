@@ -10,7 +10,7 @@ static void Print(Note note)
         $"Thesis: {note.Thesis}\n\n");
 
 
-var user = new User(Guid.NewGuid(), new Username("Yana"));
+var user = new User(new Username("Yana"));
 Console.WriteLine($"Создан пользователь id = {user.Id} userName = {user.Username}");
 user.CreateNote(new Title("Первая заметка"), new Thesis("Ура!"));
 user.CreateNote(null, new Thesis("Заметка без заголовка"));

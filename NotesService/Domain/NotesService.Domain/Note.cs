@@ -50,7 +50,7 @@ namespace NotesService.Domain
             ModificationData = modificationData;
         }
 
-        public bool SetTitle(Title newTitle)
+        internal bool SetTitle(Title? newTitle)
         {
             if (Title == newTitle)
                 return false;
@@ -58,7 +58,7 @@ namespace NotesService.Domain
             return true;
         }
 
-        public bool SetThesis(Thesis newThesis)
+        internal bool SetThesis(Thesis newThesis)
         {
             if (Thesis == null) throw new ArgumentNullValueException(nameof(newThesis));
             if (Thesis == newThesis)
@@ -67,7 +67,7 @@ namespace NotesService.Domain
             return true;
         }
 
-        public bool SetModificationData(DateTime modificationData)
+        internal bool SetModificationData(DateTime modificationData)
         {
             if (CreationData > modificationData) throw new InvalidModificationDataException(this, modificationData);
             if (ModificationData.HasValue && ModificationData > modificationData) throw new InvalidModificationDataException(this, modificationData);

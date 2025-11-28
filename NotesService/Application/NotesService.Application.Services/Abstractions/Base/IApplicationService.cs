@@ -2,18 +2,19 @@
 
 namespace NotesService.Application.Services.Abstractions.Base;
 
-public interface IApplicationService<TModel, in TId>
+public interface IApplicationService<TModel, TCreateModel, in TId>
      where TModel : IModel<TId>
      where TId : struct, IEquatable<TId>
+     where TCreateModel : ICreateModel
 {
-    Task<TModel> GetUserByIdAsync(TId id);
+    Task<TModel?> GetModelByIdAsync(TId id, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<TModel>> GetUsersAsync();
+    Task<IEnumerable<TModel>> GetModelsAsync(CancellationToken cancellationToken = default);
 
-    Task<bool> CreateUserAsync(ICreateModel userInformation);
+    Task<TModel?> CreateModelAsync(TCreateModel userInformation, CancellationToken cancellationToken = default);
 
-    Task<bool> UpdateUserAsync(TModel user);
+    Task<bool> UpdateModelAsync(TModel user, CancellationToken cancellationToken = default);
 
-    Task<bool> DeleteUserAsync(TId id);
+    Task<bool> DeleteModelAsync(TId id, CancellationToken cancellationToken = default);
 }
 

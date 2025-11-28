@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotesService.Domain;
 using NotesService.Domain.Repositories.Abstractions;
-using NotesService.Infrastructure.EntityFramework;
 using NotesService.ValueObjects;
 
-namespace AuctionTrading.Infrastructure.EntityFramework.RepositoriesEF;
+namespace NotesService.Infrastructure.EntityFramework.RepositoriesEF;
 
-public class EfSellerRepository(ApplicationDbContext context)
+public class EfUserRepository(ApplicationDbContext context)
     : EfRepository<User, Guid>(context), IUserRepository
 {
     private readonly DbSet<User> _users = context.Set<User>();

@@ -3,7 +3,7 @@ using NotesService.Domain.Base;
 using NotesService.Domain.Repositories.Abstractions.Base;
 using NotesService.Infrastructure.EntityFramework;
 
-namespace AuctionTrading.Infrastructure.EntityFramework.RepositoriesEF;
+namespace NotesService.Infrastructure.EntityFramework.RepositoriesEF;
 
 public class EfRepository<TEntity, TId>(ApplicationDbContext context)
         : IRepository<TEntity, TId>

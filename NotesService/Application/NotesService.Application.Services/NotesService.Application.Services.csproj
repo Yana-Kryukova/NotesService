@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Domain\NotesService.Domain.Repositories.Abstractions\NotesService.Domain.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\..\Domain\NotesService.Domain\NotesService.Domain.csproj" />
     <ProjectReference Include="..\NotesService.Application.Models\NotesService.Application.Models.csproj" />
   </ItemGroup>

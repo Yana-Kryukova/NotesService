@@ -7,7 +7,7 @@ namespace NotesService.Domain
     /// <summary>
     /// Represents the user.
     /// </summary>
-    public class User(Guid id, Username username) : Entity<Guid>(id)
+    public class User : Entity<Guid>
     {
         /// <summary> 
         /// The user's notes.
@@ -17,7 +17,7 @@ namespace NotesService.Domain
         /// <summary> 
         /// Gets the user's Username. 
         /// </summary>
-        public Username Username { get; private set; } = username ?? throw new ArgumentNullValueException(nameof(username));
+        public Username Username { get; private set; } = default!;
 
         /// <summary>
         /// Gets the user's notes 
@@ -25,11 +25,24 @@ namespace NotesService.Domain
         public IReadOnlyCollection<Note> Notes =>
             _notes.ToList().AsReadOnly();
 
+        protected User()
+        {
+            
+        }
+
+        public User(Username username) : this(Guid.NewGuid(), username)
+        { }
+
+        protected User(Guid id, Username username) : base(id)
+        {
+            Username = username ?? throw new ArgumentNullValueException(nameof(username));
+        }
+
         /// <summary> 
         /// Changes the user's username. 
         /// </summary>
         /// <param name="newUsername">New user's username.</param>
-        internal bool ChangeUsername(Username newUsername)
+        public bool ChangeUsername(Username newUsername)
         {
             if (newUsername == null) throw new ArgumentNullValueException(nameof(newUsername));
 
@@ -39,14 +52,14 @@ namespace NotesService.Domain
             return true;
         }
 
-        public Note CreateNote(Title title, Thesis thesis)
+        public Note CreateNote(Title? title, Thesis thesis)
         {
             var note = new Note(this, thesis, DateTime.UtcNow, title);
             _notes.Add(note);
             return note;
         }
 
-        public bool EditNote(Note note, Title newTitle, Thesis newThesis)
+        public Note? EditNote(Note note, Title? newTitle, Thesis newThesis)
         {
             if (note.User != this) throw new AnotherUserEditNoteException(note, this);
 
@@ -56,7 +69,7 @@ namespace NotesService.Domain
 
             if (isEdit) note.SetModificationData(DateTime.UtcNow);
 
-            return isEdit;
+            return isEdit ? note : null;
         }
 
         public void DeleteNote(Note note)
