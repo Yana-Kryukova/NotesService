@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\NotesService.Domain\NotesService.Domain.csproj" />
     <ProjectReference Include="..\NotesService.Application.Models\NotesService.Application.Models.csproj" />
   </ItemGroup>
 
